@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  # Hii ni server yako ya PHP
+  web:
+    build: .
+    ports:
+      - "80:80"
+    depends_on:
+      - localhost  # Inasubiri database iwake
+
+  # Hapa tunatengeneza database na kuipa jina "localhost"
+  localhost:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: "" # Password tupu kama kwenye kodi yako
+      MYSQL_DATABASE: "dukalangu_db" # Jina la DB kama kwenye kodi yako
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+    ports:
+      - "3306:3306"
